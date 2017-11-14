@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">記事本</string>
+    <string name="title">標題</string>
+    <string name="content">內容</string>
+    <string name="search_menu">Search</string>
+</resources>
