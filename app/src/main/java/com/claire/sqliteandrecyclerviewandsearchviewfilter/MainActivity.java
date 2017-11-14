@@ -41,8 +41,18 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initView();
         initHandler();
+
+        // 建立資料庫物件
+        itemDAO = new ItemDAO(getApplicationContext());
+
+        // 如果資料庫是空的，就建立一些範例資料
+        // 這是為了方便測試用的，完成應用程式以後可以拿掉
+        if (itemDAO.getCount() == 0) {
+            itemDAO.sample();
+        }
 
     }
 

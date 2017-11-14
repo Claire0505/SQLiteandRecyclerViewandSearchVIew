@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -92,6 +93,7 @@ public class ItemDAO {
 
     //讀取所有記事資料
     //Cursor 是一個 JAVA 介面，代表一個查詢後的結果，透過它的方法，可指向結果中的其中一筆記錄
+    // KEY_ID + " DESC"  改ORDER BY條件可以做排序 大-->小
     public List<Item> getAll(){
         List<Item> result = new ArrayList<>();
         Cursor cursor = db.query(TABLE_NAME,
@@ -100,7 +102,7 @@ public class ItemDAO {
                 null,
                 null,
                 null,
-                null);
+                KEY_ID + " DESC ");
         
         while (cursor.moveToNext()){
             result.add(getRecord(cursor));
@@ -162,5 +164,22 @@ public class ItemDAO {
         return result;
     }
 
+    //建立範例資料
+    public void sample(){
+        Item item = new Item(0, new Date().getTime(), "範例資料一", "記事資料一");
+        Item item2 = new Item(0, new Date().getTime(), "範例資料二", "記事資料二");
+        Item item3 = new Item(0, new Date().getTime(), "範例資料三", "記事資料三");
+        Item item4 = new Item(0, new Date().getTime(), "範例資料四", "記事資料四");
+        Item item5 = new Item(0, new Date().getTime(), "範例資料五", "記事資料五");
+        Item item6 = new Item(0, new Date().getTime(), "範例資料六", "記事資料六");
+
+        insert(item);
+        insert(item2);
+        insert(item3);
+        insert(item4);
+        insert(item5);
+        insert(item6);
+
+    }
 
 }
